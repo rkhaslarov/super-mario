@@ -17,18 +17,17 @@ Promise.all([
 .then(([mario, background, level]) => {
 
     const composer = new Composer();
+    const timer = new Timer();
     const gravity = 30;
-
-    const backgroundLayer = createBackgroundLayer(level.backgrounds, background);
-    composer.layers.push(backgroundLayer);
 
     mario.pos.set(64, 180);
     mario.vel.set(200, -600);
 
+    const backgroundLayer = createBackgroundLayer(level.backgrounds, background);
+    composer.layers.push(backgroundLayer);
+
     const marioLayer = createSpriteLayer(mario);
     composer.layers.push(marioLayer);
-
-    const timer = new Timer();
 
     timer.update = function(deltaTime) {
         composer.draw(context);
